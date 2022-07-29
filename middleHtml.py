@@ -1,4 +1,7 @@
+import re
 from bs4 import BeautifulSoup
+
+ALL_CURRENCIES = '£¥¥฿৳៛₡₥₦₨₩₪₫€₭₮₱₲₴₵₸₹₺₼₽₾₿⃀$$֏؋ƒ﷼'
 
 ITEM_HTML = '''<html><head></head><body>
 <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
@@ -47,10 +50,22 @@ def find_item_link():
 
 def find_item_price():
     locator = 'article.product_pod p.price_color'
-    item_price = float(soup.select_one(locator).string.strip('£'))
-    print(f"Item's price: {item_price}")
+    matcher = re.search(f"([{ALL_CURRENCIES}+])([0-9]+\.[0-9]*)", soup.select_one(locator).string)
+    item_price_value = float(matcher.group(2))
+    print(f"Item's price: {matcher.group(1)}{item_price_value}")
+
+
+def find_item_rating():
+    locator = 'article.product_pod p.star-rating'
+    star_rating_tag = soup.select_one(locator)
+    classes = star_rating_tag.attrs['class']  # ['star-rating', 'Three']
+    clean_class = [r for r in classes if r != 'star-rating']  # List comprehension method
+    rating_by_filter = list(filter(lambda x: x != 'star-rating', classes))  # Filter method
+    print(clean_class[0])
+    print(rating_by_filter[0])
 
 
 find_item_name()
 find_item_link()
 find_item_price()
+find_item_rating()
