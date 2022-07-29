@@ -1,0 +1,8 @@
+2022-07-29 10:26:06,670 INFO     [logging_exer.py: 9]: An info message
+2022-07-29 10:26:06,670 WARNING  [logging_exer.py: 10]: This will
+2022-07-29 10:26:06,670 DEBUG    [logging_exer.py: 11]: Trying something
+2022-07-29 10:26:25,144 WARNING  [logging_exer.py: 10]: This will
+2022-07-29 10:26:25,144 DEBUG    [logging_exer.py: 11]: Trying something
+29-07-2022 10:31:25 INFO     [logging_exer.py: 10]: An info message
+29-07-2022 10:31:25 WARNING  [logging_exer.py: 11]: This will
+29-07-2022 10:31:25 DEBUG    [logging_exer.py: 12]: Trying something
